@@ -1,0 +1,9 @@
+{
+    "name": "example",
+    "sample_key": "donor",
+    "batch_key": "cell_source",
+    "model_kwargs": {},
+    "train_kwargs": {
+        "max_epochs": 5
+    }
+}

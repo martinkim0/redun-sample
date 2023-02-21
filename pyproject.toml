@@ -1,0 +1,85 @@
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+
+[project]
+name = "redun-sample"
+version = "0.0.1"
+description = "redun sample piepeline"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Martin Kim"},
+]
+maintainers = [
+    {name = "Martin Kim", email = "martinkim@berkeley.edu"},
+]
+urls.Source = "https://github.com/martinkim0/redun-sample"
+urls.Home-page = "https://github.com/martinkim0/redun-sample"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    # CLI for bumping the version number
+    "bump2version",
+    "pre-commit"
+]
+doc = [
+    "sphinx>=4",
+    "sphinx-book-theme>=0.3.3",
+    "myst-nb",
+    "sphinxcontrib-bibtex>=1.0.0",
+    "sphinx-autodoc-typehints",
+    # For notebooks
+    "ipykernel",
+    "sphinx-copybutton",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.coverage.run]
+source = ["redun_sample"]
+omit = [
+    "**/test_*.py",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+xfail_strict = true
+addopts = [
+    "--import-mode=importlib",  # allow using test files with same name
+]
+
+[tool.isort]
+include_trailing_comma = true
+multi_line_output = 3
+profile = "black"
+skip_glob = ["docs/*"]
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.jupytext]
+formats = "ipynb,md"
